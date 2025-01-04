@@ -1,60 +1,65 @@
 package org.example.singularpoint.ui;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.example.singularpoint.ui.model.UserVO;
-import org.springframework.validation.annotation.Validated;
+import jakarta.annotation.Resource;
+import org.example.singularpoint.domain.UserRepository;
+import org.example.singularpoint.infra.UserDO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-@Tag(name = "user参数")
+@Tag(name = "用户")
 public class UserController {
 
+    @Resource
+    private UserRepository userRepository;
+
+    // 获取用户
     @GetMapping("/{id}")
-    @Operation(summary = "获取user")
-    @Parameters({
-            @Parameter(name = "id",description = "用户id",in = ParameterIn.PATH),
-            @Parameter(name = "name",description = "用户名称",required = true,in=ParameterIn.QUERY),
-            @Parameter(name = "token",description = "请求token",required = true,in = ParameterIn.HEADER),
-            @Parameter(name = "cookie",description = "cookie",required = true,in = ParameterIn.COOKIE)
-    })
-    public UserVO getUser(@PathVariable Long id,
-                          @RequestParam String name,
-                          @RequestHeader(required = false) String token,
-                          @CookieValue(required = false) String cookie) {
-        UserVO userVO = new UserVO();
-        userVO.setId(id);
-        userVO.setName(name);
-        return userVO;
+    public UserDO get(@PathVariable Long id){
+        return userRepository.findById(id).orElse(null);
     }
 
+    // 获取用户列表
+    @GetMapping
+    public Page<UserDO> list(
+            @RequestParam(defaultValue = "id") String property,
+            @RequestParam(defaultValue = "ASC") Sort.Direction direction,
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size){
+        return userRepository.findAll(PageRequest.of(page, size, Sort.by(direction, property)));
+    }
+
+    // 创建用户
     @PostMapping
-    @Operation(summary = "普通body请求+Param+Header+Path")
-    @Parameters({
-            @Parameter(name = "id",description = "文件id",in = ParameterIn.PATH),
-            @Parameter(name = "token",description = "请求token",required = true,in = ParameterIn.HEADER),
-            @Parameter(name = "name",description = "文件名称",required = true,in=ParameterIn.QUERY)
-    })
-    public Boolean addUser(@RequestBody @Validated UserVO userVO) {
-        return true;
+    public UserDO create(@RequestBody UserDO user){
+        return userRepository.save(user);
     }
 
-    @PutMapping
-    public Boolean updateUser(UserVO userVO) {
-        return true;
+    // 更新用户
+    @PutMapping("/{id}")
+    public UserDO update(@PathVariable Long id, @RequestBody UserDO user){
+        UserDO userDO = userRepository.findById(id).orElse(null);
+        if (userDO == null){
+            return null;
+        }
+        userDO.setName(user.getName());
+        userDO.setEmail(user.getEmail());
+        return userRepository.save(userDO);
     }
 
-    @PatchMapping
-    public Boolean patchUser(UserVO userVO) {
-        return true;
+    // 删除用户
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        userRepository.deleteById(id);
     }
 
-    @DeleteMapping
-    public Boolean deleteUser(UserVO userVO) {
-        return true;
+    @DeleteMapping()
+    public void deleteByName(@RequestParam String name){
+        userRepository.deleteByName_JPQL(name);
     }
+
 }

@@ -2,6 +2,9 @@ spring:
   application:
     name: singular-point
 
+server:
+  port: 8080
+
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
@@ -34,6 +37,15 @@ spring:
 spring:
   profiles:
     active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/singular_point?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
 springdoc:
   swagger-ui:
