@@ -1,6 +1,5 @@
-package org.example.singularpoint.domain;
+package org.example.singularpoint.infra;
 
-import org.example.singularpoint.infra.UserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserDO, Long> {
+public interface UserJpaRepository extends JpaRepository<UserDO, Long> {
 
     // NOTE 需要根据JPA的规范来写方法名
     List<UserDO> findByNameContaining(String name);

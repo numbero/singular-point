@@ -26,6 +26,13 @@ knife4j:
   setting:
     language: zh_cn
 
+mybatis:
+  type-aliases-package: org.example.singularpoint.infra.mapper  # mapper接口类位置
+  mapper-locations: classpath:mybatis/mapper/*.xml  #xml-sql映射文件位置
+  configuration:
+    map-underscore-to-camel-case: true
+
+
 ---
 # 生产环境
 spring:

@@ -2,7 +2,7 @@ package org.example.singularpoint.ui;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.example.singularpoint.domain.UserRepository;
+import org.example.singularpoint.infra.UserJpaRepository;
 import org.example.singularpoint.infra.UserDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,17 +10,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/user/jpa")
 @Tag(name = "用户")
-public class UserController {
+public class UserJpaController {
 
     @Resource
-    private UserRepository userRepository;
+    private UserJpaRepository userJpaRepository;
 
     // 获取用户
     @GetMapping("/{id}")
     public UserDO get(@PathVariable Long id){
-        return userRepository.findById(id).orElse(null);
+        return userJpaRepository.findById(id).orElse(null);
     }
 
     // 获取用户列表
@@ -30,36 +30,36 @@ public class UserController {
             @RequestParam(defaultValue = "ASC") Sort.Direction direction,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size){
-        return userRepository.findAll(PageRequest.of(page, size, Sort.by(direction, property)));
+        return userJpaRepository.findAll(PageRequest.of(page, size, Sort.by(direction, property)));
     }
 
     // 创建用户
     @PostMapping
     public UserDO create(@RequestBody UserDO user){
-        return userRepository.save(user);
+        return userJpaRepository.save(user);
     }
 
     // 更新用户
     @PutMapping("/{id}")
     public UserDO update(@PathVariable Long id, @RequestBody UserDO user){
-        UserDO userDO = userRepository.findById(id).orElse(null);
+        UserDO userDO = userJpaRepository.findById(id).orElse(null);
         if (userDO == null){
             return null;
         }
         userDO.setName(user.getName());
         userDO.setEmail(user.getEmail());
-        return userRepository.save(userDO);
+        return userJpaRepository.save(userDO);
     }
 
     // 删除用户
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
-        userRepository.deleteById(id);
+        userJpaRepository.deleteById(id);
     }
 
     @DeleteMapping()
     public void deleteByName(@RequestParam String name){
-        userRepository.deleteByName_JPQL(name);
+        userJpaRepository.deleteByName_JPQL(name);
     }
 
 }
