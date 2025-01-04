@@ -8,6 +8,8 @@ import org.example.singularpoint.infra.UserDO;
 @Mapper
 public interface UserMapper {
 
+    int insert(UserDO userDO);
+
     UserDO selectById(@Param("id") Long id);
 
     @Select("select * from user where name = #{name}")

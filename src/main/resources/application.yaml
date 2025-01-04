@@ -39,16 +39,48 @@ spring:
   profiles:
     active: pro
 
+
 ---
 # 开发环境
 spring:
   profiles:
     active: dev
   datasource:
+    # 默认数据库配置
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/singular_point?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: password
+    # 配置数据库连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置数据库连接监控
+      stat-view-servlet:
+        enabled: true
+        login-username: druid
+        login-password: password
+        reset-enable: true
+        url-pattern: "/druid/*"
+        # 访问IP白名单
+        allow: 127.0.0.1
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+      # 开启拦截监控
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+        profile-enable: true
+      filter:
+        slf4j:
+          enabled: true
+          statement-executable-sql-log-enable: true
   jpa:
     show-sql: true
     hibernate:

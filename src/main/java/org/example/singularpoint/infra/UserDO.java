@@ -3,6 +3,7 @@ package org.example.singularpoint.infra;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.example.singularpoint.domain.User;
 
 import java.time.LocalDate;
 
@@ -29,4 +30,12 @@ public class UserDO extends BaseDO {
     private int age;
 
     private LocalDate birthDay;
+
+    public UserDO(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.age = user.getAge();
+        this.birthDay = user.getBirthDay();
+    }
 }

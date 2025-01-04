@@ -1,0 +1,24 @@
+package org.example.singularpoint.infra;
+
+import jakarta.annotation.Resource;
+import org.example.singularpoint.domain.User;
+import org.example.singularpoint.domain.UserRepository;
+import org.example.singularpoint.infra.mapper.UserMapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.Objects;
+
+@Repository
+public class UserRepositoryImpl implements UserRepository {
+
+    @Resource
+    private UserMapper userMapper;
+
+    @Override
+    public int insert(User user) {
+        if (Objects.isNull(user)) {
+            return 0;
+        }
+        return userMapper.insert(new UserDO(user));
+    }
+}
