@@ -16,4 +16,8 @@ public class UserService {
     public void create(User user){
         userRepository.insert(user);
     }
+
+    public User getByName(String name){
+        return userRepository.selectByName(name);
+    }
 }

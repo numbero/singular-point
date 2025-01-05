@@ -3,12 +3,14 @@ package org.example.singularpoint.infra;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.example.singularpoint.domain.User;
 
 import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "user",
         indexes = {
@@ -37,5 +39,15 @@ public class UserDO extends BaseDO {
         this.email = user.getEmail();
         this.age = user.getAge();
         this.birthDay = user.getBirthDay();
+    }
+
+    public User toUser() {
+        User user = new User();
+        user.setId(this.id);
+        user.setName(this.name);
+        user.setEmail(this.email);
+        user.setAge(this.age);
+        user.setBirthDay(this.birthDay);
+        return user;
     }
 }

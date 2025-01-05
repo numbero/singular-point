@@ -13,5 +13,5 @@ public interface UserMapper {
     UserDO selectById(@Param("id") Long id);
 
     @Select("select * from user where name = #{name}")
-    UserDO selectByUserName(@Param("name") String name);
+    UserDO selectByName(@Param("name") String name);
 }

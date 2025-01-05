@@ -19,6 +19,6 @@ public class UserMybatisController {
 
     @GetMapping
     public UserDO get(@RequestParam String userName){
-        return userMapper.selectByUserName(userName);
+        return userMapper.selectByName(userName);
     }
 }

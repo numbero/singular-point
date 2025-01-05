@@ -21,4 +21,10 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return userMapper.insert(new UserDO(user));
     }
+
+    @Override
+    public User selectByName(String username) {
+        UserDO userDO = userMapper.selectByName(username);
+        return Objects.isNull(userDO) ? null : userDO.toUser();
+    }
 }

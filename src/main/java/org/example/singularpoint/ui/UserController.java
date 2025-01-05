@@ -3,10 +3,8 @@ package org.example.singularpoint.ui;
 import jakarta.annotation.Resource;
 import org.example.singularpoint.app.UserService;
 import org.example.singularpoint.domain.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.singularpoint.ui.model.Result;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -16,8 +14,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public Boolean create(@RequestBody User user){
+    public Result<Boolean> create(@RequestBody User user){
         userService.create(user);
-        return true;
+        return Result.success(true);
+    }
+
+    @GetMapping()
+    public Result<User> get(@RequestParam String name){
+        return Result.success(userService.getByName(name));
     }
 }
