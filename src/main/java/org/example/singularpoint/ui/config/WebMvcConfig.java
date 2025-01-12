@@ -1,6 +1,7 @@
 package org.example.singularpoint.ui.config;
 
 import jakarta.annotation.Resource;
+import org.example.singularpoint.ui.config.interceptor.LogInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
