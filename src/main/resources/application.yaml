@@ -94,6 +94,20 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379             # Redis 端口号
+      #password: yourpassword # 如果 Redis 设置了密码，配置在这里
+      #database: 0            # 默认数据库（0~15）
+      timeout: 1000ms        # 连接超时时间
+      lettuce:
+        pool:
+          enabled: true
+          max-active: 8
+          max-idle: 8
+          min-idle: 4
+          max-wait: -1ms
 
 springdoc:
   swagger-ui:

@@ -3,7 +3,7 @@ package org.example.singularpoint.infra.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.example.singularpoint.infra.UserDO;
+import org.example.singularpoint.infra.model.UserDO;
 
 @Mapper
 public interface UserMapper {

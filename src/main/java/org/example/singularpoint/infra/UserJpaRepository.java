@@ -1,5 +1,6 @@
 package org.example.singularpoint.infra;
 
+import org.example.singularpoint.infra.model.UserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

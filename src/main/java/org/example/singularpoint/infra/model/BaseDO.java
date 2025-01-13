@@ -1,4 +1,4 @@
-package org.example.singularpoint.infra;
+package org.example.singularpoint.infra.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

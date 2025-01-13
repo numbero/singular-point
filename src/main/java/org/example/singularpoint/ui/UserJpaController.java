@@ -3,7 +3,7 @@ package org.example.singularpoint.ui;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.example.singularpoint.infra.UserJpaRepository;
-import org.example.singularpoint.infra.UserDO;
+import org.example.singularpoint.infra.model.UserDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

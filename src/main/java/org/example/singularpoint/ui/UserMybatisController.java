@@ -1,7 +1,7 @@
 package org.example.singularpoint.ui;
 
 import jakarta.annotation.Resource;
-import org.example.singularpoint.infra.UserDO;
+import org.example.singularpoint.infra.model.UserDO;
 import org.example.singularpoint.infra.mapper.UserMapper;
 import org.springframework.web.bind.annotation.*;
 

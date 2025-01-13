@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/knife4j")
 @Tag(name = "knife4j测试")
-public class DemoKnife4jController {
+public class Knife4jController {
 
     @GetMapping("/user/{id}")
     @Operation(summary = "获取user")

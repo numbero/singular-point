@@ -78,6 +78,18 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--lettuce依赖-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.12.0</version>
+        </dependency>
+
         <!--常用工具类-->
         <dependency>
             <groupId>org.apache.commons</groupId>
