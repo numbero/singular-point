@@ -7,10 +7,10 @@
         <artifactId>singular-point</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>singular-point-redission</artifactId>
+    <artifactId>singular-point-redisson</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>singular-point-redission</name>
-    <description>singular-point-redission</description>
+    <name>singular-point-redisson</name>
+    <description>singular-point-redisson</description>
     <url/>
     <licenses>
         <license/>
@@ -24,6 +24,10 @@
         <tag/>
         <url/>
     </scm>
+
+    <!-- 设置子模块的包为 jar -->
+    <packaging>jar</packaging>
+
     <properties>
         <java.version>21</java.version>
     </properties>
@@ -41,6 +45,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

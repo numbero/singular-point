@@ -1,4 +1,4 @@
-package org.example.redissionstarter;
+package org.example.singularpoint.redisson;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

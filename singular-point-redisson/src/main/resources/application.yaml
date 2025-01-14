@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: singular-point-redisson
+
+server:
+  port: 8080
+
+
+--- # dev
+spring:
+  profiles:
+    active: dev
+
+redisson:
+  config: classpath:redisson.yml
