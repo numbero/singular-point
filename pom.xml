@@ -18,6 +18,8 @@
     <modules>
         <module>singular-point-default</module>
         <module>singular-point-redisson</module>
+        <module>singular-point-security</module>
+        <module>singular-point-common</module>
     </modules>
 
     <!-- 设置父工程的包为 pom -->
@@ -42,6 +44,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--内部组件-->
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>singular-point-common</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
             <!--        knife4j-->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>

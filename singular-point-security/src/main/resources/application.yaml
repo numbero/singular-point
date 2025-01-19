@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: singular-point-security
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/singular_point?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: password
+    # 数据库初始化
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
+      # 表结构初始化
+      schema-locations: classpath:sql/schema.sql
+      # 数据初始化
+      #data-locations: classpath:sql/data.sql
+
+mybatis:
+  type-aliases-package: org.example.singularpoint.security.infra.mapper  # mapper接口扫描包
+  mapper-locations: classpath:mybatis/mapper/*.xml  #xml-sql映射文件
+  configuration:
+    map-underscore-to-camel-case: true
