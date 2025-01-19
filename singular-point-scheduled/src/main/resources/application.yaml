@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: scheduled
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/singular_point?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: password
+  # Quartz 相关配置
+  quartz:
+    # Job 持久化方式（数据库）
+    job-store-type: JDBC
+    # 初始化完成后自动启动调度程序
+    autoStartup: true
+    # 每次启动初始化表结构
+    jdbc:
+      # 可选值：ALWAYS(每次都生成、注意只有druid数据库连接池才会自动生成表)、EMBEDDED(仅初始化嵌入式数据源)、NEVER(不初始化数据源)。
+      initialize-schema: always
+      # 指定数据库脚本
+      # schema: classpath:tables_mysql_innodb.sql
+    properties:
+      org:
+        quartz:
+          scheduler:
+            # 实例名
+            instanceName: quartzScheduler
+            # 实例 Id 策略
+            instanceId: AUTO
+          jobStore:
+            #注意：org.quartz.jobStore.class 低版本、高版本取值不同
+            #低版本：2.2.6.Release
+            #org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX
+            #高版本：2.5.x- 2.7.18
+            #org.quartz.jobStore.class=org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            #避免错误信息：org.quartz.SchedulerConfigException: DataSource name not set.
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            # 表前缀
+            tablePrefix: QRTZ_
+            isClustered: false
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+

@@ -16,10 +16,11 @@
     <url/>
 
     <modules>
-        <module>singular-point-default</module>
+        <module>singular-point-basic</module>
         <module>singular-point-redisson</module>
         <module>singular-point-security</module>
         <module>singular-point-common</module>
+        <module>singular-point-scheduled</module>
     </modules>
 
     <!-- 设置父工程的包为 pom -->
