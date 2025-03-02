@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: singular-point-rabbitmq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # 需要新建一个虚拟主机
+    virtual-host: spring-boot

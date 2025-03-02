@@ -21,6 +21,7 @@
         <module>singular-point-security</module>
         <module>singular-point-common</module>
         <module>singular-point-scheduled</module>
+        <module>singular-point-rabbitmq</module>
     </modules>
 
     <!-- 设置父工程的包为 pom -->
